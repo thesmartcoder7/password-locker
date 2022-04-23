@@ -4,5 +4,11 @@ class User:
         self.last_name = last_name
         self.username = username
         self.password = password
+        self.accounts = []
 
 
+class Account:
+    def __init__(self, name, username, password):
+        self.name = name
+        self.username = username
+        self.password = password

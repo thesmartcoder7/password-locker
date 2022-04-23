@@ -1,4 +1,4 @@
-from user import User
+from user_details import User
 
 user_accounts = []
 

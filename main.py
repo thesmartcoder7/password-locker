@@ -6,7 +6,7 @@ print("Welcome to the password vault!")
 
 while True:
     print("\nWhat would you like to do? ")
-    choice = input("a: open an account\nb: login to your existing account\n\n"
+    choice = input("a: open an account\nb: login to your account\n\n"
                    "Type 'a' for the first option and 'b' for the second: ")
 
     if choice.lower() == "a":
@@ -25,9 +25,6 @@ while True:
         login_password = input("Enter your password: ")
         for user in user_accounts:
             if login_name == user.username and login_password == user.password:
-                print("\n - - - Welcome to your account - - - ")
+                print(f"\n - - - Welcome to your account, {user.first_name.title()} - - - ")
             else:
                 print("\n - - - Your details are invalid - - - ")
-
-
-

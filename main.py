@@ -6,6 +6,10 @@ print("Welcome to the password vault!")
 
 
 def create_user_account():
+    """
+    this function is  responsible for taking in user details and using them to create a user account
+    :return: It does not return any value. It just executes.
+    """
     print("\n - - - signup - - - ")
     first_name = input("Enter your first name: ")
     last_name = input("Enter your last name: ")
@@ -23,12 +27,18 @@ def create_user_account():
 
 
 def login():
+    """
+    This function is responsible for taking in use login details and validating them for a proper login.
+    :return:
+    """
     print("\n - - - login - - - ")
     login_name = input("Enter your username: ")
     login_password = input("Enter your password: ")
     for user in user_accounts:
         if login_name == user.username and login_password == user.password:
             print(f"\n - - - Welcome to your account, {user.first_name.title()} - - - ")
+            print("What would you like to do? \na: add account\nb: show accounts\n"
+                  "c: update account\nd: delete account ")
         else:
             print(f"\n - - - Your details are invalid - - - ")
             login()

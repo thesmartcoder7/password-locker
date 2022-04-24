@@ -26,10 +26,14 @@ class User:
         :param self: the user parameter in this context refers to an individual object
         :return: this function does not return anything, it just does its work
         """
-        for account in self.accounts:
-            print(f"\n - - - {account.name.title()} Credentials - - - ")
-            print(f"username: {account.username}")
-            print(f"password: {account.password}")
+
+        if len(self.accounts) == 0:
+            print("\n - - - You have not added any accounts yet - - - ")
+        else:
+            for account in self.accounts:
+                print(f"\n - - - {account.name.title()} Credentials - - - ")
+                print(f"username: {account.username}")
+                print(f"password: {account.password}")
 
     def delete_account(self, account):
         for item in self.accounts:

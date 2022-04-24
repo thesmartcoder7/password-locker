@@ -69,7 +69,7 @@ def login():
 
     while logged_in:
         option = input("\nWhat would you like to do? \na: add account\nb: show accounts\n"
-                       "c: edit account\nd: delete account\ne: logout\n:")
+                       "c: edit account\nd: delete account\ne: logout\nchoice: ")
         if option.lower() == "a":
             account_login_password = "12345"
             account_name = input("Enter the name of the account you'd like to add: ")
@@ -120,23 +120,26 @@ def edit_account(user):
     :param user: the user parameter in this context represents the User object instance
     :return: this function does not return anything, it just does its work
     """
-    to_edit = input("Which account's credentials would you like to edit? ")
-    for account in user.accounts:
-        if account.name.lower() == to_edit.lower():
-            account.username = input(f"Your old username is {account.username}. What is your new username? ")
-            password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
-            if password_choice.lower() == "g":
-                account.password = generate_password()
-                user_copy = f"username: {account.username}\npassword: {account.password}"
-                pyperclip.copy(user_copy)
-                print("\nYour details have been copied to clipboard")
-                print("\n - - - Your account has been successfully updated! - - - \n")
-            elif password_choice.lower() == "w":
-                account.password = input("Enter your desired password for the account: ")
-                user_copy = f"username: {account.username}\npassword: {account.password}"
-                pyperclip.copy(user_copy)
-                print("\nYour details have been copied to clipboard")
-                print("\n - - - Your account has been successfully updated! - - - \n")
+    if len(user.accounts) == 0:
+        print("\n - - - There are no accounts for your to edit! - - - ")
+    else:
+        to_edit = input("Which account's credentials would you like to edit? ")
+        for account in user.accounts:
+            if account.name.lower() == to_edit.lower():
+                account.username = input(f"Your old username is {account.username}. What is your new username? ")
+                password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
+                if password_choice.lower() == "g":
+                    account.password = generate_password()
+                    user_copy = f"username: {account.username}\npassword: {account.password}"
+                    pyperclip.copy(user_copy)
+                    print("\nYour details have been copied to clipboard")
+                    print("\n - - - Your account has been successfully updated! - - - \n")
+                elif password_choice.lower() == "w":
+                    account.password = input("Enter your desired password for the account: ")
+                    user_copy = f"username: {account.username}\npassword: {account.password}"
+                    pyperclip.copy(user_copy)
+                    print("\nYour details have been copied to clipboard")
+                    print("\n - - - Your account has been successfully updated! - - - \n")
 
 
 # TODO 7. Create an account to allow users  to delete a specific account
@@ -146,11 +149,14 @@ def delete_account(user):
     :param user: in this context, the user represents the object instance of the User class
     :return: this function does not return anything, it just does its work
     """
-    to_delete = input("Which account's credentials would you like to delete? ")
-    for account in user.accounts:
-        if account.name.lower() == to_delete.lower():
-            user.delete_account(account)
-            print("\n - - - Your account's credentials have been successfully deleted! - - - \n")
+    if len(user.accounts) == 0:
+        print("\n - - - There are no accounts to delete in this collection - - - ")
+    else:
+        to_delete = input("\nWhich account's credentials would you like to delete? ")
+        for account in user.accounts:
+            if account.name.lower() == to_delete.lower():
+                user.delete_account(account)
+                print("\n - - - Your account's credentials have been successfully deleted! - - - \n")
 
 
 def main():
@@ -162,8 +168,10 @@ def main():
                        "Type 'a' for the first option and 'b' for the second: ")
         if choice.lower() == "a":
             create_user_account()
-        else:
+        elif choice.lower() == "b":
             login()
+        else:
+            print("\nThat is not a valid input! Try again")
 
 
 if __name__ == "__main__":

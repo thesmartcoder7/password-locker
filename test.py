@@ -1,5 +1,4 @@
 import unittest
-# import main
 from user_details import User, Credentials
 
 

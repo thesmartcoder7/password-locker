@@ -22,3 +22,6 @@ class Credentials:
         self.name = name
         self.username = username
         self.password = password
+
+    def add_account(self):
+        Credentials.accounts.append(self)

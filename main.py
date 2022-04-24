@@ -46,6 +46,9 @@ def create_user_account():
         print("That username is already taken!")
         create_user_account()
 
+    # for item in User.user_accounts:
+    #     print(item.first_name)
+
 
 def login():
     """
@@ -58,13 +61,15 @@ def login():
     successful_user = "sam"
     logged_in = False
     for user in User.user_accounts:
-        if login_name == user.username and login_password == user.password:
+        if login_name == user.username and login_password == user.password and logged_in is False:
             successful_user = user
             logged_in = True
-            print(f"\n - - - Welcome to your account, {user.first_name.title()} - - - ")
-        else:
-            print(f"\n - - - Your details are invalid - - - ")
-            login()
+
+    if logged_in:
+        print(f"\n - - - Welcome to your account, {successful_user.first_name.title()} - - - ")
+    else:
+        print(f"\n - - - Your details are invalid - - - ")
+        login()
 
     while logged_in:
         option = input("\nWhat would you like to do? \na: add account\nb: show accounts\n"
@@ -104,6 +109,8 @@ def add_account(user, name, username, password):
     :return: this function does not return anything, it just does its work.
     """
     user.accounts.append(Credentials(name, username, password))
+    # user.accounts = Credentials(name, username, password).add_account()
+    # print(user.accounts)
 
 
 def show_accounts(user):

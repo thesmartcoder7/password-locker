@@ -27,7 +27,7 @@ class TestUser(unittest.TestCase):
     def test_add_user(self):
         """
         this method tests if the functionality for user creation is successful
-        :return:
+        :return: this method does not return anything
         """
         self.test_user.add_user()
         self.assertEqual(len(User.user_accounts), 1)
@@ -45,9 +45,20 @@ class TestCredentials(unittest.TestCase):
         self.test_account = Credentials("twitter", "twitterboy", "twitterboyrocks!")
 
     def test_init(self):
+        """
+        this method tests if the initialization of the account has been successful
+        :return: this method does not return anything
+        """
         self.assertEqual(self.test_account.name, "twitter")
         self.assertEqual(self.test_account.username, "twitterboy")
         self.assertEqual(self.test_account.password, "twitterboyrocks!")
+
+    def test_add_account(self):
+        """
+        this method tests if the functionality for user creation is successful
+        :return: this method does not return anything
+        """
+        self.test_account.add_account()
 
 
 if __name__ == "__main__":

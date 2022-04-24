@@ -88,6 +88,9 @@ def login():
             edit_account(successful_user)
         elif option.lower() == "d":
             delete_account(successful_user)
+        elif option.lower() == "e":
+            logged_in = False
+            print("\n - - - You have been logged out! - - - \n")
 
 
 def add_account(user, name, username, password):

@@ -79,6 +79,7 @@ class TestCredentials(unittest.TestCase):
         :return: this method does not return anything
         """
         self.test_account.add_account()
+        self.assertEqual(len(Credentials.accounts), 1)
 
 
 if __name__ == "__main__":

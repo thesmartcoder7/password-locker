@@ -47,11 +47,13 @@ class User:
         :return: it returns an array with two items. A boolean and a value. The boolean is what determines if the
                  user gets to try again or get into their account details
         """
+        logged_user = "sam"
+        logged_in = False
         for user in User.user_accounts:
-            if name == user.username and password == user.password:
-                return [True, user]
-            else:
-                return [False, "sam"]
+            if name.lower() == user.username.lower() and password == user.password:
+                logged_user = user
+                logged_in = True
+        return [logged_in, logged_user]
 
 
 class Credentials:

@@ -19,13 +19,25 @@ def generate_password():
     this function is responsible for generating a 15 character random, secure password
     :return: it returns the randomly generated password to the function that calls it
     """
-    r_letters = [random.choice(characters) for _ in range(5)]
-    r_numbers = [random.choice(numbers) for _ in range(5)]
-    r_symbols = [random.choice(symbols) for _ in range(5)]
-    gen_password = r_letters + r_numbers + r_symbols
-    random.shuffle(gen_password)
-    generated_password = "".join(gen_password)
-    return generated_password
+    try:
+        length = int(input("\nChoose a password length between 8 and 15 random characters: "))
+        if length < 8 or length > 15:
+            print("Range Error: You are not allowed to generate a password shorter than 8 characters or longer than 15")
+            generate_password()
+        else:
+            r_letters = [random.choice(characters) for _ in range(5)]
+            r_numbers = [random.choice(numbers) for _ in range(5)]
+            r_symbols = [random.choice(symbols) for _ in range(5)]
+            gen_password = r_letters + r_numbers + r_symbols
+            random.shuffle(gen_password)
+            generated_password = "".join(gen_password)
+            final_password = generated_password[0:length]
+
+            return final_password
+
+    except ValueError:
+        print("Please enter the right length! Just numbers. No words allowed!")
+        generate_password()
 
 
 # TODO 3. Create a function to create a user account from the user input
@@ -44,6 +56,7 @@ def create_user_account():
 
     if user_name not in User.user_accounts:
         User.add_user(user_name)
+
         print("\n - - - Account successfully created! - - - ")
     else:
         print("That username is already taken!")
@@ -72,7 +85,7 @@ def login():
                        "c: edit account\nd: delete account\ne: logout\nchoice: ")
         if option.lower() == "a":
             account_login_password = "12345"
-            account_name = input("Enter the name of the account you'd like to add: ")
+            account_name = input("\nEnter the name of the account you'd like to add: ")
             account_login_name = input("Enter the username for the account: ")
             password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
             if password_choice.lower() == "g":
@@ -111,6 +124,7 @@ def add_account(user, name, username, password):
     :return: this function does not return anything, it just does its work.
     """
     user.accounts.append(Credentials(name, username, password))
+    print(user.accounts)
 
 
 # TODO 6. Create a function to allow users to edit the accounts within

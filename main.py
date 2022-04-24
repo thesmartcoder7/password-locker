@@ -86,6 +86,8 @@ def login():
             show_accounts(successful_user)
         elif option.lower() == "c":
             edit_account(successful_user)
+        elif option.lower() == "d":
+            delete_account(successful_user)
 
 
 def add_account(user, name, username, password):
@@ -113,9 +115,13 @@ def edit_account(user):
                 print("\n - - - Your account has been successfully updated! - - - \n")
 
 
-# def delete_account(user):
-#
-#
+def delete_account(user):
+    to_delete = input("Which account's credentials would you like to delete? ")
+    for account in user.accounts:
+        if account.name.lower() == to_delete.lower():
+            user.accounts.remove(account)
+            print("\n - - - Your account's credentials have been successfully deleted! - - - \n")
+
 
 print("Welcome to the password vault!")
 

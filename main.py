@@ -46,6 +46,7 @@ def create_user_account():
         print("That username is already taken!")
         create_user_account()
 
+    # this is a test statement
     # for item in User.user_accounts:
     #     print(item.first_name)
 
@@ -64,7 +65,6 @@ def login():
         if login_name == user.username and login_password == user.password and logged_in is False:
             successful_user = user
             logged_in = True
-
     if logged_in:
         print(f"\n - - - Welcome to your account, {successful_user.first_name.title()} - - - ")
     else:
@@ -74,7 +74,6 @@ def login():
     while logged_in:
         option = input("\nWhat would you like to do? \na: add account\nb: show accounts\n"
                        "c: edit account\nd: delete account\ne: logout\n:")
-
         if option.lower() == "a":
             account_login_password = "12345"
             account_name = input("Enter the name of the account you'd like to add: ")
@@ -88,7 +87,7 @@ def login():
                 print("\n - - - Account added successfully! - - - \n")
             add_account(successful_user, account_name, account_login_name, account_login_password)
         elif option.lower() == "b":
-            show_accounts(successful_user)
+            successful_user.show_accounts()
         elif option.lower() == "c":
             edit_account(successful_user)
         elif option.lower() == "d":
@@ -111,18 +110,6 @@ def add_account(user, name, username, password):
     user.accounts.append(Credentials(name, username, password))
     # user.accounts = Credentials(name, username, password).add_account()
     # print(user.accounts)
-
-
-def show_accounts(user):
-    """
-    this is responsible for fetching all the use accounts and displaying them for the user to see
-    :param user: the user parameter in this context refers to an individual object
-    :return: this function does not return anything, it just does its work
-    """
-    for account in user.accounts:
-        print(f"\n - - - {account.name.title()} Credentials - - - ")
-        print(f"username: {account.username}")
-        print(f"password: {account.password}")
 
 
 def edit_account(user):

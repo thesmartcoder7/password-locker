@@ -32,6 +32,13 @@ class TestUser(unittest.TestCase):
         self.test_user.add_user()
         self.assertEqual(len(User.user_accounts), 1)
 
+    def test_show_accounts(self):
+        """
+        this method tests the functionality of displaying all the accounts and credentials the user has
+        :return: this method does not return any value at all
+        """
+        self.assertEqual(self.test_user.accounts, [])
+
 
 class TestCredentials(unittest.TestCase):
     """

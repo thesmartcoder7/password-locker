@@ -1,7 +1,5 @@
 from user_details import User, Credentials
 import random
-
-user_accounts = []
 characters = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
     'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
@@ -39,8 +37,9 @@ def create_user_account():
 
     user_name = User(first_name, last_name, user_name, user_password)
 
-    if user_name not in user_accounts:
-        user_accounts.append(user_name)
+    if user_name not in User.user_accounts:
+        User.add_user(user_name)
+        # User.user_accounts.append(user_name)
         print("\n - - - Account successfully created! - - - ")
     else:
         print("That username is already taken!")
@@ -57,7 +56,7 @@ def login():
     login_password = input("Enter your password: ")
     successful_user = "sam"
     logged_in = False
-    for user in user_accounts:
+    for user in User.user_accounts:
         if login_name == user.username and login_password == user.password:
             successful_user = user
             logged_in = True

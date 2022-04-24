@@ -20,6 +20,10 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.test_user.username, "sammy")
         self.assertEqual(self.test_user.password, "smart-code")
 
+    def test_add_user(self):
+        self.test_user.add_user()
+        self.assertEqual(len(User.user_accounts), 1)
+
 
 class TestCredentials(unittest.TestCase):
     """

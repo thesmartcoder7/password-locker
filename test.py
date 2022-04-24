@@ -51,6 +51,11 @@ class TestUser(unittest.TestCase):
             self.test_user.username
         )
 
+    def test_delete_account(self):
+        self.test_user.accounts.append(Credentials("twitter", "twitterboy", "twitterboyrocks!"))
+        self.test_user.delete_account(self.test_user.accounts[0])
+        self.assertEqual(len(self.test_user.accounts), 0)
+
 
 class TestCredentials(unittest.TestCase):
     """

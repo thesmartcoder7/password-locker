@@ -40,15 +40,10 @@ def create_user_account():
 
     if user_name not in User.user_accounts:
         User.add_user(user_name)
-        # User.user_accounts.append(user_name)
         print("\n - - - Account successfully created! - - - ")
     else:
         print("That username is already taken!")
         create_user_account()
-
-    # this is a test statement
-    # for item in User.user_accounts:
-    #     print(item.first_name)
 
 
 def login():
@@ -104,8 +99,6 @@ def add_account(user, name, username, password):
     :return: this function does not return anything, it just does its work.
     """
     user.accounts.append(Credentials(name, username, password))
-    # user.accounts = Credentials(name, username, password).add_account()
-    # print(user.accounts)
 
 
 def edit_account(user):
@@ -136,7 +129,7 @@ def delete_account(user):
     to_delete = input("Which account's credentials would you like to delete? ")
     for account in user.accounts:
         if account.name.lower() == to_delete.lower():
-            user.accounts.remove(account)
+            user.delete_account(account)
             print("\n - - - Your account's credentials have been successfully deleted! - - - \n")
 
 

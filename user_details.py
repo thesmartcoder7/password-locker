@@ -28,6 +28,11 @@ class User:
             print(f"username: {account.username}")
             print(f"password: {account.password}")
 
+    def delete_account(self, account):
+        for item in self.accounts:
+            if account.name == item.name:
+                self.accounts.remove(account)
+
     @staticmethod
     def user_login(name, password):
         """

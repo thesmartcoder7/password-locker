@@ -94,10 +94,24 @@ def login():
 
 
 def add_account(user, name, username, password):
+    """
+    this method is responsible for creating new instances of accounts and adding them into the user accounts
+    :param user: this is taken in to represent the main User object
+    :param name: this is an attribute of the account class that represents the name of the specific account
+                 to be added
+    :param username: this is the username parameter that is to be stored as the account's username
+    :param password: this is the username parameter that is to be stored as the account's password
+    :return: this function does not return anything, it just does its work.
+    """
     user.accounts.append(Account(name, username, password))
 
 
 def show_accounts(user):
+    """
+    this is responsible for fetching all the use accounts and displaying them for the user to see
+    :param user: the user parameter in this context refers to an individual object
+    :return:
+    """
     for account in user.accounts:
         print(f"\n - - - {account.name.title()} Credentials - - - ")
         print(f"username: {account.username}")
@@ -105,6 +119,11 @@ def show_accounts(user):
 
 
 def edit_account(user):
+    """
+    this is responsible for editing the individual accounts
+    :param user: the user parameter in this context represents the User object instance
+    :return:
+    """
     to_edit = input("Which account's credentials would you like to edit? ")
     for account in user.accounts:
         if account.name.lower() == to_edit.lower():
@@ -119,6 +138,11 @@ def edit_account(user):
 
 
 def delete_account(user):
+    """
+    this functnio is responsible for removing the credentials for the selected user
+    :param user: in this context, the user represents the object instance of the User class
+    :return:
+    """
     to_delete = input("Which account's credentials would you like to delete? ")
     for account in user.accounts:
         if account.name.lower() == to_delete.lower():

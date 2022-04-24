@@ -1,5 +1,8 @@
 
 class User:
+    """
+    this is a class that allows the program to generate objects of type User
+    """
 
     user_accounts = []
 
@@ -48,6 +51,10 @@ class User:
 
 
 class Credentials:
+
+    """
+    this is a class that allows the program to generate objects of type Credentials
+    """
 
     accounts = []
 

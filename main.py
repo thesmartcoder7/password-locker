@@ -2,6 +2,7 @@ from user_details import User, Credentials
 import random
 import pyperclip
 
+# TODO 1. Get all the characters needed for the password generator
 characters = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
     'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
@@ -12,6 +13,7 @@ numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '#', '$', '%', '&', '*', '+']
 
 
+# TODO 2. Create the password generator function
 def generate_password():
     """
     this function is responsible for generating a 15 character random, secure password
@@ -26,6 +28,7 @@ def generate_password():
     return generated_password
 
 
+# TODO 3. Create a function to create a user account from the user input
 def create_user_account():
     """
     this function is  responsible for taking in user details and using them to create a user account
@@ -47,6 +50,7 @@ def create_user_account():
         create_user_account()
 
 
+# TODO 4. Create a function to allow users to login
 def login():
     """
     This function is responsible for taking in use login details and validating them for a proper login.
@@ -95,6 +99,7 @@ def login():
             print("\n - - - You have been logged out! - - - \n")
 
 
+# TODO 5. Create a function to add account and the user's accounts array
 def add_account(user, name, username, password):
     """
     this method is responsible for creating new instances of accounts and adding them into the user accounts
@@ -108,6 +113,7 @@ def add_account(user, name, username, password):
     user.accounts.append(Credentials(name, username, password))
 
 
+# TODO 6. Create a function to allow users to edit the accounts within
 def edit_account(user):
     """
     this is responsible for editing the individual accounts
@@ -133,6 +139,7 @@ def edit_account(user):
                 print("\n - - - Your account has been successfully updated! - - - \n")
 
 
+# TODO 7. Create an account to allow users  to delete a specific account
 def delete_account(user):
     """
     this function is responsible for removing the credentials for the selected user

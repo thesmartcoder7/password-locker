@@ -68,7 +68,7 @@ def login():
 
     while logged_in:
         option = input("\nWhat would you like to do? \na: add account\nb: show accounts\n"
-                       "c: update account\nd: delete account\n e: logout ")
+                       "c: update account\nd: delete account\ne: logout\n:")
 
         if option.lower() == "a":
             account_login_password = "12345"
@@ -77,9 +77,13 @@ def login():
             password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
             if password_choice.lower() == "g":
                 account_login_password = generate_password()
-            elif password_choice.lower() == "s":
+                print(" - - - Account added successfully! - - - ")
+            elif password_choice.lower() == "w":
                 account_login_password = input("Enter your desired password for the account: ")
+                print(" - - - Account added successfully! - - - ")
             add_account(successful_user, account_name, account_login_name, account_login_password)
+        elif option.lower() == "b":
+            show_accounts(successful_user)
 
 
 def add_account(user, name, username, password):
@@ -88,9 +92,9 @@ def add_account(user, name, username, password):
 
 def show_accounts(user):
     for account in user.accounts:
-        print(account.name, account.username, account.password)
-
-
+        print(f"\n - - - {account.name.title()} Credentials - - - ")
+        print(f"username: {account.username}")
+        print(f"password: {account.password}")
 
 
 print("Welcome to the password vault!")

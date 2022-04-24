@@ -1,6 +1,26 @@
-from user_details import User
+from user_details import User, Account
+import random
 
 user_accounts = []
+characters = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+    'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
+    'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+    'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+]
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '*', '+']
+
+
+def generate_password():
+    r_letters = [random.choice(characters) for _ in range(7)]
+    r_numbers = [random.choice(numbers) for _ in range(7)]
+    r_symbols = [random.choice(symbols) for _ in range(7)]
+    gen_password = r_letters + r_numbers + r_symbols
+    random.shuffle(gen_password)
+    generated_password = "".join(gen_password)
+    return generated_password
+
 
 print("Welcome to the password vault!")
 
@@ -34,14 +54,34 @@ def login():
     print("\n - - - login - - - ")
     login_name = input("Enter your username: ")
     login_password = input("Enter your password: ")
+    successful_user = "sam"
     for user in user_accounts:
         if login_name == user.username and login_password == user.password:
+            successful_user = user
             print(f"\n - - - Welcome to your account, {user.first_name.title()} - - - ")
-            print("What would you like to do? \na: add account\nb: show accounts\n"
-                  "c: update account\nd: delete account ")
         else:
             print(f"\n - - - Your details are invalid - - - ")
             login()
+
+    option = input("\nWhat would you like to do? \na: add account\nb: show accounts\n"
+                   "c: update account\nd: delete account ")
+
+    if option.lower() == "a":
+        account_name = input("Enter the name of the account you'd like to add: ")
+        account_login_name = input("Enter the username for the account: ")
+        password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
+        if password_choice.lower() == "g":
+            account_login_password = generate_password()
+        elif password_choice.lower() == "s":
+            account_login_password = input("Enter the password for the ")
+
+        add_account(successful_user, account_name, account_login_name, account_login_password)
+
+
+def add_account(user, name, username, password):
+    user.accounts.append(Account(name, username, password))
+    for account in user.accounts:
+        print(account.name, account.username, account.password)
 
 
 while True:

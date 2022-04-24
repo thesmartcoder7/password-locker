@@ -50,7 +50,7 @@ def create_user_account():
 def login():
     """
     This function is responsible for taking in use login details and validating them for a proper login.
-    :return:
+    :return: It does not return any value. It just executes.
     """
     print("\n - - - login - - - ")
     login_name = input("Enter your username: ")
@@ -68,7 +68,7 @@ def login():
 
     while logged_in:
         option = input("\nWhat would you like to do? \na: add account\nb: show accounts\n"
-                       "c: update account\nd: delete account\ne: logout\n:")
+                       "c: edit account\nd: delete account\ne: logout\n:")
 
         if option.lower() == "a":
             account_login_password = "12345"
@@ -77,13 +77,15 @@ def login():
             password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
             if password_choice.lower() == "g":
                 account_login_password = generate_password()
-                print(" - - - Account added successfully! - - - ")
+                print("\n - - - Account added successfully! - - - \n")
             elif password_choice.lower() == "w":
                 account_login_password = input("Enter your desired password for the account: ")
-                print(" - - - Account added successfully! - - - ")
+                print("\n - - - Account added successfully! - - - \n")
             add_account(successful_user, account_name, account_login_name, account_login_password)
         elif option.lower() == "b":
             show_accounts(successful_user)
+        elif option.lower() == "c":
+            edit_account(successful_user)
 
 
 def add_account(user, name, username, password):
@@ -96,6 +98,24 @@ def show_accounts(user):
         print(f"username: {account.username}")
         print(f"password: {account.password}")
 
+
+def edit_account(user):
+    to_edit = input("Which account's credentials would you like to edit? ")
+    for account in user.accounts:
+        if account.name.lower() == to_edit.lower():
+            account.username = input(f"Your old username is {account.username}. What is your new username? ")
+            password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
+            if password_choice.lower() == "g":
+                account.password = generate_password()
+                print("\n - - - Your account has been successfully updated! - - - \n")
+            elif password_choice.lower() == "w":
+                account.password = input("Enter your desired password for the account: ")
+                print("\n - - - Your account has been successfully updated! - - - \n")
+
+
+# def delete_account(user):
+#
+#
 
 print("Welcome to the password vault!")
 

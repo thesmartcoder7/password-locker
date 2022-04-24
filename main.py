@@ -161,17 +161,21 @@ def delete_account(user):
 
 def main():
     print("Welcome to the password vault!")
-
-    while True:
+    program_is_running = True
+    while program_is_running:
         print("\nWhat would you like to do? ")
-        choice = input("a: open an account\nb: login to your account\n\n"
-                       "Type 'a' for the first option and 'b' for the second: ")
+        choice = input("a: open an account\nb: login to your account\nc: close application\n\n"
+                       "Type 'a' for the first option, 'b' for the second, and 'c' for the last: ")
         if choice.lower() == "a":
             create_user_account()
         elif choice.lower() == "b":
             login()
+        elif choice.lower() == "c":
+            program_is_running = False
         else:
             print("\nThat is not a valid input! Try again")
+
+    print("\n - - - Shutting down the application - - - ")
 
 
 if __name__ == "__main__":

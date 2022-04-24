@@ -15,12 +15,20 @@ class TestUser(unittest.TestCase):
         self.test_user = User("samuel", "martins", "sammy", "smart-code")
 
     def test_init(self):
+        """
+        this method tests if the initialization of the user has been successful
+        :return: this method does not return anything
+        """
         self.assertEqual(self.test_user.first_name, "samuel")
         self.assertEqual(self.test_user.last_name, "martins")
         self.assertEqual(self.test_user.username, "sammy")
         self.assertEqual(self.test_user.password, "smart-code")
 
     def test_add_user(self):
+        """
+        this method tests if the functionality for user creation is successful
+        :return:
+        """
         self.test_user.add_user()
         self.assertEqual(len(User.user_accounts), 1)
 

@@ -1,4 +1,4 @@
-from user_details import User, Account
+from user_details import User, Credentials
 import random
 
 user_accounts = []
@@ -14,12 +14,12 @@ symbols = ['!', '#', '$', '%', '&', '*', '+']
 
 def generate_password():
     """
-    this function is responsible for generating a 21 character random, secure password
+    this function is responsible for generating a 15 character random, secure password
     :return: it returns the randomly generated password to the function that calls it
     """
-    r_letters = [random.choice(characters) for _ in range(7)]
-    r_numbers = [random.choice(numbers) for _ in range(7)]
-    r_symbols = [random.choice(symbols) for _ in range(7)]
+    r_letters = [random.choice(characters) for _ in range(5)]
+    r_numbers = [random.choice(numbers) for _ in range(5)]
+    r_symbols = [random.choice(symbols) for _ in range(5)]
     gen_password = r_letters + r_numbers + r_symbols
     random.shuffle(gen_password)
     generated_password = "".join(gen_password)
@@ -103,14 +103,14 @@ def add_account(user, name, username, password):
     :param password: this is the username parameter that is to be stored as the account's password
     :return: this function does not return anything, it just does its work.
     """
-    user.accounts.append(Account(name, username, password))
+    user.accounts.append(Credentials(name, username, password))
 
 
 def show_accounts(user):
     """
     this is responsible for fetching all the use accounts and displaying them for the user to see
     :param user: the user parameter in this context refers to an individual object
-    :return:
+    :return: this function does not return anything, it just does its work
     """
     for account in user.accounts:
         print(f"\n - - - {account.name.title()} Credentials - - - ")
@@ -122,7 +122,7 @@ def edit_account(user):
     """
     this is responsible for editing the individual accounts
     :param user: the user parameter in this context represents the User object instance
-    :return:
+    :return: this function does not return anything, it just does its work
     """
     to_edit = input("Which account's credentials would you like to edit? ")
     for account in user.accounts:
@@ -139,9 +139,9 @@ def edit_account(user):
 
 def delete_account(user):
     """
-    this functnio is responsible for removing the credentials for the selected user
+    this function is responsible for removing the credentials for the selected user
     :param user: in this context, the user represents the object instance of the User class
-    :return:
+    :return: this function does not return anything, it just does its work
     """
     to_delete = input("Which account's credentials would you like to delete? ")
     for account in user.accounts:
@@ -150,13 +150,18 @@ def delete_account(user):
             print("\n - - - Your account's credentials have been successfully deleted! - - - \n")
 
 
-print("Welcome to the password vault!")
+def main():
+    print("Welcome to the password vault!")
 
-while True:
-    print("\nWhat would you like to do? ")
-    choice = input("a: open an account\nb: login to your account\n\n"
-                   "Type 'a' for the first option and 'b' for the second: ")
-    if choice.lower() == "a":
-        create_user_account()
-    else:
-        login()
+    while True:
+        print("\nWhat would you like to do? ")
+        choice = input("a: open an account\nb: login to your account\n\n"
+                       "Type 'a' for the first option and 'b' for the second: ")
+        if choice.lower() == "a":
+            create_user_account()
+        else:
+            login()
+
+
+if __name__ == "__main__":
+    main()

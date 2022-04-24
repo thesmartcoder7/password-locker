@@ -1,3 +1,4 @@
+
 class User:
     def __init__(self, first_name, last_name, username, password):
         self.first_name = first_name
@@ -7,7 +8,7 @@ class User:
         self.accounts = []
 
 
-class Account:
+class Credentials:
     def __init__(self, name, username, password):
         self.name = name
         self.username = username

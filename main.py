@@ -1,5 +1,6 @@
 from user_details import User, Credentials
 import random
+import pyperclip
 
 characters = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
@@ -72,6 +73,9 @@ def login():
             password_choice = input("Enter 'g' to generate a random secure password or 'w' to write your own: ")
             if password_choice.lower() == "g":
                 account_login_password = generate_password()
+                user_copy = f"username: {account_login_name}\npassword: {account_login_password}"
+                pyperclip.copy(user_copy)
+                print("\nYour details have been copied to clipboard")
                 print("\n - - - Account added successfully! - - - \n")
             elif password_choice.lower() == "w":
                 account_login_password = input("Enter your desired password for the account: ")

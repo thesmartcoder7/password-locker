@@ -11,6 +11,10 @@ class User:
         self.accounts = []
 
     def add_user(self):
+        """
+        this function basically adds a new user in to the user accounts array
+        :return: it returns nothing as it just executes
+        """
         User.user_accounts.append(self)
 
     def show_accounts(self):
@@ -23,6 +27,19 @@ class User:
             print(f"\n - - - {account.name.title()} Credentials - - - ")
             print(f"username: {account.username}")
             print(f"password: {account.password}")
+
+    @staticmethod
+    def user_login(name, password):
+        """
+        This function is responsible for taking in use login details and validating them for a proper login.
+        :return: it returns an array with two items. A boolean and a value. The boolean is what determines if the
+                 user gets to try again or get into their account details
+        """
+        for user in User.user_accounts:
+            if name == user.username and password == user.password:
+                return [True, user]
+            else:
+                return [False, "sam"]
 
 
 class Credentials:

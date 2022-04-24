@@ -59,12 +59,8 @@ def login():
     print("\n - - - login - - - ")
     login_name = input("Enter your username: ")
     login_password = input("Enter your password: ")
-    successful_user = "sam"
-    logged_in = False
-    for user in User.user_accounts:
-        if login_name == user.username and login_password == user.password and logged_in is False:
-            successful_user = user
-            logged_in = True
+    successful_user = User.user_login(login_name, login_password)[1]
+    logged_in = User.user_login(login_name, login_password)[0]
     if logged_in:
         print(f"\n - - - Welcome to your account, {successful_user.first_name.title()} - - - ")
     else:

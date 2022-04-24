@@ -7,6 +7,7 @@ class TestUser(unittest.TestCase):
     """
     this is a test class that defines test cases for the User class behaviours
     """
+
     def setUp(self):
         """
         this runs before each of the test cases
@@ -39,11 +40,23 @@ class TestUser(unittest.TestCase):
         """
         self.assertEqual(self.test_user.accounts, [])
 
+    def test_user_login(self):
+        """
+        this method test if the user trying to log into the application exists in the application
+        :return:
+        """
+        self.assertEqual(User.user_login(self.test_user.username, self.test_user.password)[0], True)
+        self.assertEqual(
+            User.user_login(self.test_user.username, self.test_user.password)[1].username,
+            self.test_user.username
+        )
+
 
 class TestCredentials(unittest.TestCase):
     """
     this is a test class that defines test cases for the Credentials class behaviours
     """
+
     def setUp(self):
         """
         this runs before each of the test cases
